@@ -59,7 +59,6 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
       <section>
         <StyledForm onSubmit={handleSubmitForm}>
           <StyledLabel htmlFor="name">Name</StyledLabel>
@@ -89,7 +88,6 @@ const ContactForm = () => {
           <StyledAddBtn type="submit">Add contact</StyledAddBtn>
         </StyledForm>
       </section>
-    </div>
   );
 };
 

@@ -1,18 +1,23 @@
-import React from 'react';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from 'components/ContactList/ContactList';
-import Filter from './Filter/Filter';
-import { StyledWrapper } from './App.styled';
+import React, { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+const Loader = lazy(() => import('./Loader/Loader'));
+const Layout = lazy(() => import('./Layout/Layout'));
+const HomePage = lazy(() => import('../pages/HomePage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 
 const App = () => {
   return (
-    <StyledWrapper>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </StyledWrapper>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="*" element={<HomePage />} />
+        </Route>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </Suspense>
   );
 };
 
