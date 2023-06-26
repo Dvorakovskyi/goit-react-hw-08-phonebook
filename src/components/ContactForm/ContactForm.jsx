@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/contactsSlice';
-import { addContact, fetchContacts } from 'redux/thunks';
+import { getContacts } from 'redux/contacts/contactsSlice';
+import { addContact, fetchContacts } from 'redux/contacts/thunks';
 import { Notify } from 'notiflix';
 import {
   StyledForm,

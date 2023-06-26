@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts, getFilter } from 'redux/contactsSlice';
-import { deleteContact } from 'redux/thunks';
+import { getContacts, getFilter } from 'redux/contacts/contactsSlice';
+import { deleteContact } from 'redux/contacts/thunks';
 import ContactItem from './ContactItem/ContactItem';
 import Notification from 'components/Notification/Notification';
 import Loader from 'components/Loader/Loader';
