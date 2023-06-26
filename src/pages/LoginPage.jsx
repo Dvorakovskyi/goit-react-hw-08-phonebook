@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { login } from 'Api/api';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { loginThunk } from 'redux/auth/thunks';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
+    const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -21,7 +24,7 @@ const LoginPage = () => {
       return;
     }
 
-    login({ email, password });
+    dispatch(loginThunk({ email, password }));
 
     setEmail('');
     setPassword('');

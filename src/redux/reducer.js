@@ -1,7 +1,8 @@
-import { contactReduser } from "./contacts/contactsSlice";
+import { contactsReducer } from "./contacts/contactsSlice";
 import { authReducer } from "./auth/authSlice";
+import { combineReducers } from "@reduxjs/toolkit";
 
-export const reducer = {
-    contacts: contactReduser,
+export const rootReducer = combineReducers({
+    contacts: contactsReducer,
     auth: authReducer,
-};
+});

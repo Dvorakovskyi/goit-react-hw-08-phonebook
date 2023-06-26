@@ -8,9 +8,11 @@ export const register = async body => {
 }
 
 export const loginThunk = createAsyncThunk('auth/login',
-    async (body) => {
+    async body => {
         try {
-            return await axios.post('/users/login', body)
+            const response = await axios.post('/users/login', body);
+
+            return response.data;
         }
         catch (error) {
             console.log(error)

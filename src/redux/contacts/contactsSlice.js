@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './thunks';
 
 const handlePending = state => {
+  state.contacts.isLoading = true;
   state.contacts.error = '';
 };
 
@@ -31,7 +32,7 @@ const contactsSlice = createSlice({
   initialState: {
     contacts: {
       items: [],
-      isLoading: true,
+      isLoading: false,
       error: null,
     },
     filter: '',
@@ -53,7 +54,7 @@ const contactsSlice = createSlice({
   },
 });
 
-export const contactReduser = contactsSlice.reducer;
+export const contactsReducer = contactsSlice.reducer;
 
 export const getContacts = state => state.contacts;
 export const getFilter = state => state.filter;

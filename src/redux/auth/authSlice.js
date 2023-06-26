@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginThunk } from './thunks';
 
-const handlePending = state => (state.error = '');
+const handlePending = state => {
+    state.isLoading = true;
+    state.error = '';
+}
 
 const handleFulfilledLogin = (state, action) => {
-  state.token = action.payload;
+  state.token = action.payload.token;
   state.isLoading = false;
 };
 
