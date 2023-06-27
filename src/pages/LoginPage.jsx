@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { loginThunk } from 'redux/auth/thunks';
-import { selectToken } from 'redux/auth/authSlice';
+import { selectProfile } from 'redux/auth/authSlice';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const isAuth = useSelector(selectToken);
+  const profile = useSelector(selectProfile);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    profile && navigate('/');
+    profile && Notify.success(`Hello, ${profile.name}`);
+  }, [navigate, profile])
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -28,7 +33,6 @@ const LoginPage = () => {
     }
 
     dispatch(loginThunk({ email, password }));
-    console.log(isAuth)
 
     setEmail('');
     setPassword('');

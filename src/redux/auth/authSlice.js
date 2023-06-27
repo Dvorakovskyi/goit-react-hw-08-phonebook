@@ -44,4 +44,4 @@ const authSlice = createSlice({
 
 export const authReducer = authSlice.reducer;
 
-export const selectToken = state => state.token;
+export const selectProfile = state => state.auth.currentProfile;
