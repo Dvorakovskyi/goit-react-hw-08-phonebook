@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk } from './thunks';
+import { loginThunk, getCurrentProfile } from './thunks';
 
 const handlePending = state => {
-    state.isLoading = true;
-    state.error = '';
-}
+  state.isLoading = true;
+  state.error = '';
+};
 
 const handleFulfilledLogin = (state, action) => {
   state.token = action.payload.token;
   state.isLoading = false;
+};
+
+const handleFulfilledProfile = (state, action) => {
+  state.isLoading = false;
+  state.currentProfile = action.payload;
 };
 
 const handleRejected = (state, action) => {
@@ -22,10 +27,12 @@ const authSlice = createSlice({
     token: '',
     isLoading: false,
     error: null,
+    currentProfile: null,
   },
   extraReducers: builder => {
     builder
       .addCase(loginThunk.fulfilled, handleFulfilledLogin)
+      .addCase(getCurrentProfile.fulfilled, handleFulfilledProfile)
       .addMatcher(action => {
         action.type.endsWith('/pending');
       }, handlePending)
@@ -36,3 +43,5 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+
+export const selectToken = state => state.token;
