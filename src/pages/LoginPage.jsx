@@ -9,14 +9,14 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const profile = useSelector(selectProfile);
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     profile && navigate('/');
     profile && Notify.success(`Hello, ${profile.name}`);
-  }, [navigate, profile])
+  }, [navigate, profile]);
 
   const handleChange = event => {
     const { name, value } = event.target;

@@ -8,6 +8,10 @@ const setToken = token => {
   axios.defaults.headers.common['Authorization'] = token;
 };
 
+export const deleteToken = () => {
+  delete axios.defaults.headers.common['Authorization'];
+};
+
 export const getCurrentProfile = createAsyncThunk('auth/profile', async () => {
   const response = await axios.get('/users/current');
 

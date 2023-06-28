@@ -29,6 +29,14 @@ const authSlice = createSlice({
     error: null,
     currentProfile: null,
   },
+  reducers: {
+    logOut: (state) => {
+      state.token = '';
+      state.isLoading = false;
+      state.error = null;
+      state.currentProfile = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(loginThunk.fulfilled, handleFulfilledLogin)
@@ -43,5 +51,7 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { logOut } = authSlice.actions;
 
 export const selectProfile = state => state.auth.currentProfile;
+export const selectToken = state => state.auth.token;

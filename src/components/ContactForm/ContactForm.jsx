@@ -38,7 +38,7 @@ const ContactForm = () => {
 
       return;
     }
-
+    
     dispatch(addContact({ name, phone: number }));
 
     reset();

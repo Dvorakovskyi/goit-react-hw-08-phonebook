@@ -6,9 +6,9 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    
-    const navigate = useNavigate();
+  const [name, setName] = useState('');
+
+  const navigate = useNavigate();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -22,10 +22,10 @@ const RegisterPage = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    
-      if (password.length < 7) {
-          Notify.failure('Password must be at least 7 characters')
-          return;
+
+    if (password.length < 7) {
+      Notify.failure('Password must be at least 7 characters');
+      return;
     }
 
     if (!name || !email || !password) {
@@ -33,11 +33,11 @@ const RegisterPage = () => {
       return;
     }
 
-      register({ name, email, password }).then(() => {
-          Notify.success('You are successfully registered');
+    register({ name, email, password }).then(() => {
+      Notify.success('You are successfully registered');
 
-          navigate('/login');
-      });
+      navigate('/login');
+    });
 
     setEmail('');
     setName('');

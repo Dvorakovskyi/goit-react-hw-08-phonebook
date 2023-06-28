@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './thunks';
 
 const handlePending = state => {
+    console.log(state)
   state.contacts.isLoading = true;
   state.contacts.error = '';
 };
