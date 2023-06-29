@@ -55,3 +55,4 @@ export const { logOut } = authSlice.actions;
 
 export const selectProfile = state => state.auth.currentProfile;
 export const selectToken = state => state.auth.token;
+

@@ -27,12 +27,12 @@ const ContactList = () => {
         <section>
           {items.length > 0 ? (
             <ul>
-              {foundContact.map(({ id, phone, name }) => (
+              {foundContact.map(({ id, number, name }) => (
                 <ContactItem
                   contactsArray={items}
                   key={id}
                   name={name}
-                  phone={phone}
+                  number={number}
                   onClick={() => dispatch(deleteContact(id))}
                 />
               ))}

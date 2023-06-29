@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './thunks';
 
 const handlePending = state => {
-    console.log(state)
   state.contacts.isLoading = true;
   state.contacts.error = '';
 };
@@ -33,7 +32,7 @@ const contactsSlice = createSlice({
   initialState: {
     contacts: {
       items: [],
-      isLoading: false,
+      isLoading: true,
       error: null,
     },
     filter: '',

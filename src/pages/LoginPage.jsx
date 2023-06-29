@@ -3,20 +3,28 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { loginThunk } from 'redux/auth/thunks';
-import { selectProfile } from 'redux/auth/authSlice';
+import { selectProfile, selectToken } from 'redux/auth/authSlice';
+import {
+  StyledLoginWrapper,
+  StyledLoginForm,
+  StyledLoginTitle,
+  StyledLoginInput,
+  StyledLoginBtn,
+} from './LoginPage.styled';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const profile = useSelector(selectProfile);
+  const token = useSelector(selectToken);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    profile && navigate('/');
+    token && navigate('/');
     profile && Notify.success(`Hello, ${profile.name}`);
-  }, [navigate, profile]);
+  }, [navigate, profile, token]);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -39,32 +47,33 @@ const LoginPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {' '}
-      LOGIN
-      <label htmlFor="email"></label>
-      <input
-        id="email"
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        onChange={handleChange}
-        value={email}
-      />
-      <label htmlFor="password"></label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        placeholder="Password"
-        onChange={handleChange}
-        value={password}
-      />
-      <button type="submit">LOGIN</button>
-      <p>
-        Don't have an account? <Link to="/register">Sign Up</Link>
-      </p>
-    </form>
+    <StyledLoginWrapper>
+      <StyledLoginForm onSubmit={handleSubmit}>
+        <StyledLoginTitle>Login</StyledLoginTitle>
+        <label htmlFor="email"></label>
+        <StyledLoginInput
+          id="email"
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          onChange={handleChange}
+          value={email}
+        />
+        <label htmlFor="password"></label>
+        <StyledLoginInput
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          value={password}
+        />
+        <StyledLoginBtn type="submit">LOGIN</StyledLoginBtn>
+        <p>
+          Don't have an account? <Link to="/register">Sign Up</Link>
+        </p>
+      </StyledLoginForm>
+    </StyledLoginWrapper>
   );
 };
 

@@ -6,11 +6,11 @@ import {
   StyledContactDescr,
 } from './ContactItem.styled';
 
-const ContactItem = ({ id, name, phone, onClick }) => {
+const ContactItem = ({ id, name, number, onClick }) => {
   return (
     <StyledItem key={id}>
       <StyledContactDescr>
-        {name}: {phone}
+        {name}: {number}
       </StyledContactDescr>
       <StyledDeleteBtn type="button" onClick={onClick}>
         Delete
@@ -22,7 +22,7 @@ const ContactItem = ({ id, name, phone, onClick }) => {
 ContactItem.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

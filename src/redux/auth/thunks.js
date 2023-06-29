@@ -4,8 +4,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-const setToken = token => {
-  axios.defaults.headers.common['Authorization'] = token;
+export const setToken = token => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
 export const deleteToken = () => {
@@ -14,6 +14,7 @@ export const deleteToken = () => {
 
 export const getCurrentProfile = createAsyncThunk('auth/profile', async () => {
   const response = await axios.get('/users/current');
+  console.log(response.data)
 
   return response.data;
 });
@@ -27,10 +28,10 @@ export const loginThunk = createAsyncThunk(
   async (body, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post('/users/login', body);
+      
+      setToken(response.data.token);
 
-      setToken(`Bearer ${response.data.token}`);
-
-      dispatch(getCurrentProfile());
+     await dispatch(getCurrentProfile());
 
       return response.data;
     } catch (error) {
