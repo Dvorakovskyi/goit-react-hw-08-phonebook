@@ -5,6 +5,7 @@ import { deleteContact } from 'redux/contacts/thunks';
 import ContactItem from './ContactItem/ContactItem';
 import Notification from 'components/Notification/Notification';
 import Loader from 'components/Loader/Loader';
+import { StyledSection } from 'components/App.styled';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ContactList = () => {
   return (
     <>
       {isLoading ? <Loader /> :
-        <section>
+        <StyledSection>
           {items.length > 0 ? (
             <ul>
               {foundContact.map(({ id, number, name }) => (
@@ -40,7 +41,7 @@ const ContactList = () => {
           ) : (
             <Notification />
           )}
-        </section>}
+        </StyledSection>}
     </>
   );
 };

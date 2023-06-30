@@ -19,6 +19,11 @@ export const StyledInput = styled.input`
     font-size: 14px;
     border-radius: 4px;
     border: 2px solid black;
+    outline: none;
+
+    &:focus {
+        border: 2px solid #8ec3e0;
+    }
 `;
 
 export const StyledAddBtn = styled.button`

@@ -2,13 +2,13 @@ import React from 'react';
 import ContactForm from '../components/ContactForm/ContactForm';
 import ContactList from '../components/ContactList/ContactList';
 import Filter from '../components/Filter/Filter';
-import { StyledWrapper } from '../components/App.styled';
+import { StyledWrapper, StyledSecondaryTitle } from '../components/App.styled';
 
 const HomePage = () => {
-    return (
+  return (
     <StyledWrapper>
       <ContactForm />
-      <h2>Contacts</h2>
+      <StyledSecondaryTitle>Contacts</StyledSecondaryTitle>
       <Filter />
       <ContactList />
     </StyledWrapper>

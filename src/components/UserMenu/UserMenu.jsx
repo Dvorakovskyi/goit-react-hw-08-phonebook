@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { selectProfile, logOut } from 'redux/auth/authSlice';
 import { deleteToken } from 'redux/auth/thunks';
+import {
+  StyledUserWrapper,
+  StyledLogoutBtn,
+  StyledUserName,
+} from './UserMenu.styled';
 
 const UserMenu = () => {
   const profile = useSelector(selectProfile);
@@ -21,17 +26,17 @@ const UserMenu = () => {
   return (
     <>
       {profile && (
-        <div>
-          <p>{profile.email}</p>
-          <button
+        <StyledUserWrapper>
+          <StyledUserName>{profile.email}</StyledUserName>
+          <StyledLogoutBtn
             type="button"
             onClick={() => {
               handleLogOut();
             }}
           >
             Logout
-          </button>
-        </div>
+          </StyledLogoutBtn>
+        </StyledUserWrapper>
       )}
     </>
   );

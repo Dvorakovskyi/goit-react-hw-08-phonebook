@@ -14,7 +14,6 @@ export const deleteToken = () => {
 
 export const getCurrentProfile = createAsyncThunk('auth/profile', async () => {
   const response = await axios.get('/users/current');
-  console.log(response.data)
 
   return response.data;
 });
