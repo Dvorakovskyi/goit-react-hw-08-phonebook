@@ -6,6 +6,7 @@ import ContactItem from './ContactItem/ContactItem';
 import Notification from 'components/Notification/Notification';
 import Loader from 'components/Loader/Loader';
 import { StyledSection } from 'components/App.styled';
+import { StyledLoaderWrapper } from 'components/Loader/Loader.styled';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ContactList = () => {
 
   return (
     <StyledSection>
-      {isLoading ? <Loader /> :
+      {!isLoading ? (
         <StyledSection>
           {items.length > 0 ? (
             <ul>
@@ -41,7 +42,12 @@ const ContactList = () => {
           ) : (
             <Notification />
           )}
-        </StyledSection>}
+        </StyledSection>
+      ) : (
+        <StyledLoaderWrapper>
+          <Loader />
+        </StyledLoaderWrapper>
+      )}
     </StyledSection>
   );
 };

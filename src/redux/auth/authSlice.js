@@ -37,7 +37,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: '',
-    isLoading: true,
+    isLoading: false,
     error: null,
     currentProfile: null,
   },
