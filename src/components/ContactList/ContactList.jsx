@@ -23,7 +23,7 @@ const ContactList = () => {
   const foundContact = getContact();
 
   return (
-    <>
+    <StyledSection>
       {isLoading ? <Loader /> :
         <StyledSection>
           {items.length > 0 ? (
@@ -42,7 +42,7 @@ const ContactList = () => {
             <Notification />
           )}
         </StyledSection>}
-    </>
+    </StyledSection>
   );
 };
 

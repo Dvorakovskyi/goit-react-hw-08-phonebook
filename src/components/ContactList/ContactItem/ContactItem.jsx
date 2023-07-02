@@ -6,9 +6,9 @@ import {
   StyledContactDescr,
 } from './ContactItem.styled';
 
-const ContactItem = ({ id, name, number, onClick }) => {
+const ContactItem = ({name, number, onClick }) => {
   return (
-    <StyledItem key={id}>
+    <StyledItem>
       <StyledContactDescr>
         {name}: {number}
       </StyledContactDescr>
@@ -20,7 +20,6 @@ const ContactItem = ({ id, name, number, onClick }) => {
 };
 
 ContactItem.propTypes = {
-  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,

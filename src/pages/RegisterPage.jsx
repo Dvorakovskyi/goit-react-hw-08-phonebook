@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { register } from '../redux/auth/thunks';
-import { Link, useNavigate } from 'react-router-dom';
+import { registerThunk } from '../redux/auth/thunks';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   StyledLoginWrapper,
@@ -15,7 +16,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -40,11 +41,7 @@ const RegisterPage = () => {
       return;
     }
 
-    register({ name, email, password }).then(() => {
-      Notify.success('You are successfully registered');
-
-      navigate('/login');
-    });
+    dispatch(registerThunk({ name, email, password }));
 
     setEmail('');
     setName('');

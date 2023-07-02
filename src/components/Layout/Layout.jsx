@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import Loader from 'components/Loader/Loader';
-import { logOut, selectProfile, selectToken } from 'redux/auth/authSlice';
+import { selectProfile, selectToken } from 'redux/auth/authSlice';
 import { getCurrentProfile, setToken } from 'redux/auth/thunks';
 
 const Layout = () => {
@@ -17,8 +17,6 @@ const Layout = () => {
       setToken(token);
 
       dispatch(getCurrentProfile())
-        .unwrap()
-        .catch(() => dispatch(logOut()));
     }
   }, [token, profile, dispatch]);
 

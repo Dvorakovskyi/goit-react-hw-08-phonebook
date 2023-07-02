@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { loginThunk } from 'redux/auth/thunks';
-import { selectProfile, selectToken } from 'redux/auth/authSlice';
+import { selectIsLoading, selectProfile, selectToken } from 'redux/auth/authSlice';
 import {
   StyledLoginWrapper,
   StyledLoginForm,
@@ -11,12 +11,14 @@ import {
   StyledLoginInput,
   StyledLoginBtn,
 } from './LoginPage.styled';
+import Loader from 'components/Loader/Loader';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const profile = useSelector(selectProfile);
   const token = useSelector(selectToken);
+  const isLoading = useSelector(selectIsLoading)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,7 +49,8 @@ const LoginPage = () => {
   };
 
   return (
-    <StyledLoginWrapper>
+    <>
+      {!isLoading ? <StyledLoginWrapper>
       <StyledLoginForm onSubmit={handleSubmit}>
         <StyledLoginTitle>Login</StyledLoginTitle>
         <label htmlFor="email"></label>
@@ -73,8 +76,11 @@ const LoginPage = () => {
           Don't have an account? <Link to="/register">Sign Up</Link>
         </p>
       </StyledLoginForm>
-    </StyledLoginWrapper>
+      </StyledLoginWrapper> : <div style={{marginRight: 'auto', marginLeft: 'auto', marginTop: '25%', width: 80}}><Loader/></div>}
+    
+      </>
   );
+  
 };
 
 export default LoginPage;
