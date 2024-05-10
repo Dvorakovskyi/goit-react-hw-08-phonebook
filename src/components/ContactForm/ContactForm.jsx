@@ -18,9 +18,6 @@ const ContactForm = () => {
 
   const { items } = useSelector(getContacts);
 
-  let draft = `Helo ${name}`;
-  console.log(draft);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
